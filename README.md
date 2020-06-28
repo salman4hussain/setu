@@ -1,7 +1,7 @@
 # setu
 Billing API
 
-
+<pre>
 Customer Details:
 
 (id, name, phone) VALUES ('1','SALMAN', '7679956267');
@@ -17,3 +17,4 @@ Customer corresponding bill details:
 (id, phone, status, amount, due_date) VALUES ('54','7679956269', "U", 300, 1593675000000);
 (id, phone, status, amount, due_date) VALUES ('56','7679956260', "U", 400, 1593761400000);
 (id, phone, status, amount, due_date) VALUES ('124','7679956246', "U", 1200, 1593761400000);
+</pre>

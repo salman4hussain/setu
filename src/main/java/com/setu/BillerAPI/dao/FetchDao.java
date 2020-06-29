@@ -17,7 +17,7 @@ public class FetchDao {
 	private JdbcTemplate jdbcTemplate;
 	
 	public CustomerEntity getCustomerDetail(String number) {
-		List<CustomerEntity> entity = jdbcTemplate.query("SELECT * FROM customert where phone = ?",new Object[] { number },
+		List<CustomerEntity> entity = jdbcTemplate.query("SELECT * FROM customer where phone = ?",new Object[] { number },
 				(resultSet, rowNum) -> new CustomerEntity(resultSet.getString("name"),resultSet.getInt("id"),resultSet.getString("phone")));
 		if(entity.isEmpty())
 			throw new UserNotFoundException("customer-not-found");

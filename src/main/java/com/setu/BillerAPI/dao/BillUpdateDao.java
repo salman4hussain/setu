@@ -44,7 +44,7 @@ public class BillUpdateDao {
 			jdbcTemplate.update(updateQuery, balance, request.getRefID());
 
 			String billId = CommonUtil.getAlphaNumericString(6);
-			jdbcTemplate.execute("INSERT INTO transaction VALUES (" + "'" + billId + "'," + "'"
+			jdbcTemplate.execute("INSERT INTO cust_transaction VALUES (" + "'" + billId + "'," + "'"
 					+ request.getTransaction().getId() + "'," + "'" + request.getRefID() + "'," + "'"
 					+ request.getTransaction().getAmountPaid() + "'," + "'" + System.currentTimeMillis() + "')");
 			return billId;
@@ -53,7 +53,7 @@ public class BillUpdateDao {
 
 	private boolean isTransactionExist(int refId, String trans_id) {
 		List<TransactionEntity> entity = jdbcTemplate.query(
-				"SELECT * FROM transaction where trans_id = ? and ref_id = ?", new Object[] { trans_id, refId },
+				"SELECT * FROM cust_transaction where trans_id = ? and ref_id = ?", new Object[] { trans_id, refId },
 				(resultSet, rowNum) -> new TransactionEntity(resultSet.getString("id")));
 		if (entity.isEmpty())
 			return false;
@@ -62,7 +62,7 @@ public class BillUpdateDao {
 	}
 
 	private boolean isTransactionRefIdExist(int refId) {
-		List<TransactionEntity> entity = jdbcTemplate.query("SELECT * FROM transaction where ref_id = ?",
+		List<TransactionEntity> entity = jdbcTemplate.query("SELECT * FROM cust_transaction where ref_id = ?",
 				new Object[] { refId }, (resultSet, rowNum) -> new TransactionEntity(resultSet.getString("id")));
 		if (entity.isEmpty())
 			return false;
